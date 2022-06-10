@@ -39,3 +39,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/georgiosseitidis/ssifs
+BugReports: https://github.com/georgiosseitidis/ssifs/issues
