@@ -100,7 +100,7 @@ By examined the posterior odds of the consistent NMA model ($m(\boldsymbol{\gamm
 You can install the development version of **ssifs** like so:
 ```{r setup, eval=FALSE}
 install.packages("devtools")
-devtools::install_github("georgiosseitidis\\ssifs")
+devtools::install_github("georgiosseitidis/ssifs")
 ```
 
 ## Data
@@ -127,7 +127,7 @@ treat2 <- Alcohol$treat2
 
 Run the `ssifs` function, using *AO-CT* as a reference treatment
 
-```{r}
+```{r, results = "hide"}
 set.seed(12)
 m <- ssifs(TE = TE, seTE = seTE, studlab = study, treat1 = treat1, treat2 = treat2, ref = "AO-CT")
 ```

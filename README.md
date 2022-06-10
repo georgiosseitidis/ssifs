@@ -12,7 +12,7 @@ You can install the development version of ssifs like so:
 
 ``` r
 install.packages("devtools")
-devtools::install_github("georgiosseitidis\\ssifs")
+devtools::install_github("georgiosseitidis/ssifs")
 ```
 
 ## How to use ssifs
