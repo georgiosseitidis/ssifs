@@ -20,7 +20,7 @@ devtools::install_github("georgiosseitidis/ssifs")
 We illustrate how to use `ssifs` in the vignette:
 
 ``` r
-vignette("ssifs", package = "ssifs")
+vignette("An_introduction_to_ssifs", package = "ssifs")
 ```
 
 How to cite `ssifs`
