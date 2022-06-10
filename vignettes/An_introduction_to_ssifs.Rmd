@@ -1,0 +1,186 @@
+---
+title: "An introduction to the Stochastic Search Variable Selection method using the ssifs package"
+author: "Georgios Seitidis"
+output: rmarkdown::html_vignette
+description: > 
+ This document introduces you to the Stochastic Search Variable Inconsistency Factor Selection (SSIFS) method for identifying inconsistency in network meta-analysis, and how to apply through the **ssifs** package.
+bibliography: references.bib 
+latex_engine: xelatex
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{An introduction to the Stochastic Search Variable Selection method using the ssifs package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+<style>
+body {
+text-align: justify}
+</style>
+
+
+## Quick Revision
+
+Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection [@george1993variable] for identifying inconsistencies in Network Meta-Analysis (NMA). SSIFS is a two-step method, where in the first step inconsistency factors are specified, and in the second step, variable selection on inconsistency
+factors is performed using the SSVS method.
+
+## Inverse-variance NMA model
+
+The inverse variance random-effects NMA model adjusted to include $\ell =1, 2, \ldots, p$ inconsistency factors is described by the following equation
+$$ \boldsymbol{y = X\mu + \beta +bZ + \epsilon}, \quad \boldsymbol{\epsilon} \sim N(\boldsymbol{0}, \boldsymbol{\Sigma} ) \quad and \quad \boldsymbol{\beta} \sim N(\boldsymbol{0}, \boldsymbol{\Delta})$$
+
+where $\boldsymbol{y}$ denotes the treatments effect, $\boldsymbol{X}$ the design matrix,
+$\boldsymbol{\mu}$ the underlying basic contrasts, $\boldsymbol{\beta}$ the normally
+ distributed random effects, $\boldsymbol{b}$ the effect of inconsistency factors, $\boldsymbol{Z}$ the inconsistency factor's index matrix, and $\boldsymbol{\epsilon}$ the normally distributed sampling errors.
+Correlation matrix $\boldsymbol{\Delta}$ is a block diagonal matrix, assuming common heterogeneity across treatment comparisons, while covariance matrix $\boldsymbol{\Sigma}$ is assumed known and obtained from the data
+based on @franchini2012accounting. Matrix  $\boldsymbol{Z}$ contains as elements values 1, -1 and 0, indicating in which comparisons inconsistency factor is added. Among the choices that may be considered for the specification of the $\boldsymbol{Z}$ matrix are the Lu and Ades model [@lu2006assessing], the design-by-treatment model [@higgins2012consistency], and the random-effects implementation of the design-by-treatment model [@jackson2014design].
+
+## Variable Selection
+
+In SSIFS the effect of an inconsistency factor $\ell$ is described from a mixture of two normal distributions,
+which can be written as $$b_{\ell} | \gamma_{\ell} \sim (1-\gamma_{\ell}) N(0, \psi_{\ell}^{2}) + \gamma_\ell N(0, c^{2}\psi_\ell^{2})$$ where $b_{\ell}$ is the effect of the inconsistency factor, $\gamma_{\ell}$ is an auxiliary variable indicating if the inconsistency factor is included in the NMA model, and $c$, $\psi_{\ell}$ are tunning
+parameters controlling the mixing ability of the method. 
+
+In matrix notation SSIFS is written as $$\boldsymbol{b | \gamma} \sim N( \boldsymbol{0}, \boldsymbol{D_\gamma R D_\gamma} ) $$
+where 
+$$
+\boldsymbol{D}_{\boldsymbol{\gamma}}=
+  \begin{pmatrix}
+    a_1 \psi_1 & 0 & \dots & 0 \\
+    0 & a_2 \psi_2 & \dots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \dots & a_\text{p} \psi_\text{p}
+  \end{pmatrix}
+  ,\qquad a_\ell= \begin{cases} 
+  1, \quad \gamma_\ell=0\\
+  c, \quad \gamma_\ell=1
+  \end{cases}.
+$$
+Matrix $\boldsymbol{R}$ denotes the prior correlation between the inconsistency factors. We can assume that inconsistency factors are independent by setting $\boldsymbol{R} = \boldsymbol{I}$, or we can assume a dependency between inconsistency factors by using a Zellner g-prior as desctipted bellow
+$$\boldsymbol{R}=g \boldsymbol{ (Z^{'}Z) } \sigma^{2}, \quad \pi (\sigma^{2} ) \propto \frac{1}{\sigma^2}.$$
+For the specification of the parameter $g$, the unit information criterion [@kass1995reference] is used, which translates in SSIFS to the total number of network's observed comparisons. Prior inclusion probabilities of the inconsistency factors are specified as
+$$\gamma_\ell \sim Bernoulli(1 - \pi_{con}^{ \frac{1}{p}}),  \quad \ell = 1, 2, \ldots, p$$
+where $\pi_{con}$ is the probability to have a consistent network and reflects our prior believes on how likely is to have a consistent network. In a review of 201 networks, 44 networks were found to be globally inconsistent [@veroniki2021prevalence]. Thus, $\pi_{con} \sim Beta(157, 44)$ is proposed.
+
+## Tunning
+
+Tunning is crucial in SSIFS in order to ensure a good mixing of the method. Ideally, the effect of an inconsistency factor, when it is included in the NMA model should lie in an area close to zero, and far away from this area when it is not included in the NMA model. Regarding parameter $c$, values between 10 and 100 usually perform well in most cases [@george1993variable; @doi:https://doi.org/10.1002/9781118445112.stat07829]. Possible values of parameter $\psi_\ell$ could be obtained from a pilot MCMC run of the NMA model as the standard deviation of the inconsistency factors. 
+
+### Minimum value of inconsistency
+
+By properly tunning parameters $c$ and $\psi_\ell$, a difference between direct and indirect evidence that is of practical significance (say $\omega$) can be defined. Thus, an inconsistency factor with a coefficient larger than $\omega$ in absolute values ($|b_{\ell}| > \omega$), should be included in the NMA model ($\gamma_\ell = 1$). In the case where $\boldsymbol{R = I}$, the inconsistency factor will have higher probability to be included in the NMA model when $$|b_\ell |> \psi_\ell \sqrt{\xi(c)}, \quad \xi(c) = \frac{2c^2 \log{c}}{c^2 -1}.$$ For example, if a difference above 0.2 is considered important, one possible parameterization is to set $c = 10$ and $\psi_\ell = \frac{0.2}{\sqrt{\xi(10)}} \approx 0.1.$ 
+
+## Inconsistency Detection
+
+Inconsistency in SSIFS is evaluated by examining the posterior inclusion probabilities
+of the inconsistency factors, the posterior model probabilities and the posterior model odds.
+
+### Posterior Inclusion probabilities
+Posterior inclusion probabilities estimated as the average of times the inconsistency factor was included in the NMA model in the MCMC draws. Estimates above 0.5 indicates local inconsistency, which cause global inconsistency to the network. 
+
+### Posterior Model Odds
+Posterior model odds are obtained as the ratio of the posterior model probabilities which are estimated as 
+$$f\hat{(m|\boldsymbol{y})}=\frac{1}{M-B} \sum_{t=B+1}^{M}{I(m^{(t)}=m)}, \quad m(\boldsymbol{\gamma})=\sum_{\ell = 1}^{p}{\gamma_\ell 2^{\ell-1}}$$
+where $M$ is the number of MCMC iterations, $B$ the burn-in period and $m^{(t)}$ a model indicator which transforms the $\boldsymbol{\gamma}$ to a unique decimal number.
+By examined the posterior odds of the consistent NMA model ($m(\boldsymbol{\gamma}) = 0$) over the inconsistent NMA models, we can evaluate the consistency assumption. Also, the comparison between the consistent NMA model ($m(\boldsymbol{\gamma}) = 0$) over all the other observed inconsistent NMA models ($m(\boldsymbol{\gamma}) \ne 0$), indicates if the NMA model is globally consistent.
+
+# Model Implementation through siffs
+
+## Installation
+
+You can install the development version of **ssifs** like so:
+```{r setup, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("georgiosseitidis\\ssifs")
+```
+
+## Data
+`ssifs` requires the contrast based data used for the network meta-analysis. Also, in the multi-arm studies, all possible comparisons must be provided. In the case where the network is disconnected, `ssifs` keeps only those studies that belong to the largest sub-network in order to maintain one connected network.
+
+## Example
+
+Load the brief alcohol intervention dataset from the **ssifs** package. The dataset is from a published network meta-analysis [@seitidis2022network; @hennessy2019comparative] and contains 37 studies evaluating the comparative effectiveness of brief alcohol interventions on preventing hazardous drinking in college students. 
+
+```{r}
+library(ssifs)
+data("Alcohol", package = "ssifs")
+```
+
+Prepare the data for the `ssifs`
+
+```{r}
+TE <- Alcohol$TE
+seTE <- Alcohol$seTE
+study <- Alcohol$studyid
+treat1 <- Alcohol$treat1
+treat2 <- Alcohol$treat2
+```
+
+Run the `ssifs` function, using *AO-CT* as a reference treatment
+
+```{r}
+set.seed(12)
+m <- ssifs(TE = TE, seTE = seTE, studlab = study, treat1 = treat1, treat2 = treat2, ref = "AO-CT")
+```
+
+The function by default for the specification of the matrix $\boldsymbol{Z}$ uses the design-by-treatment model. You can use the Lu & Ades model by setting the argument `method = "LuAdes"`, or the random-effects implementation of the design-by-treatment model by setting `method = "Jackson"`. Also, the function by default specifies the correlation matrix $\boldsymbol{R}$ by using a zellner g-prior. You can assume that inconsistency factors are independent by setting the argument `zellner = FALSE`. 
+
+Regarding the prior inclusion probability, the function assumes that
+$\pi_{con} \sim Beta(157, 44)$ (argument `rpcon = TRUE`). By setting the argument `rpcon = FALSE`
+you can set the probability of $\pi_{con}$ fixed. If `rpcon = FALSE`, the function assumes that $\pi_{con} = 0.5$. You can change this probability from the argument `pcons`.
+
+## Detection of inconsistency
+
+### Posterior inclusion probabilities
+
+Posterior inclusion probabilities can be obtained like so:
+```{r}
+m$Posterior_inclusion_probabilities
+```
+
+The first two columns refers to comparisons where inconsistency factors are added. For example, the first row refers to the inconsistency factor that added to the comparisons between treatments *Alc101* and *BASICS*, obtained from the two-arm studies that compare these treatments. The fifth row refers to the inconsistency factor that added to the comparison between treatments *AO-CT* and *AlcEdu*, obtained from the multi-arm studies that compare the treatments *AO-CT*, *AlcEdu* and *e-CHUG*.
+Column **PIP** refer to posterior inclusion probability, while columns **b,** **b.lb** and **b.ub** to the inconsistency factors effect estimates with the corresponding 95% credible interval. 
+
+If `method = "LuAdes"`, the column **Design** is `NA`. This is because the Lu & Ades model accounts only for loop inconsistencies.
+
+In this example, the posterior inclusion probabilities suggest that the network is globally and locally consistent, since there are not any significant local inconsistencies that causes global inconsistency to the network (posterior inclusion probabilities $\approx 0 < 0.5$).
+
+### Posterior model odds
+
+The posterior model odds can be obtained like so:
+```{r}
+head(m$Posterior_Odds)
+```
+
+Column **IFs** refers to the model observed in the MCMC draws (Inconsistency factors are separated by the symbol `,`), **Freq** refers to the number of times the model was observed in the MCMC draws, **f(m|y)** denotes the posterior model probability and PO_IFCONS to the posterior odds of the consistent NMA model (*NO IFs*) over the model in the corresponding row. An estimate over 1 favors the consistent NMA model. 
+
+In this example, the first row refers to the consistent NMA model (*NO IFs*), showing that the posterior model probability of the consistent NMA model is 0.79. The posterior odds is 1 as expected, since $$PO = \frac{f(m_{con}|\boldsymbol{y})}{f(m_{con}|\boldsymbol{y})}=\frac{0.7943}{0.7943} = 1$$. The second row refers to the inconsistent NMA model (say $m_{2}$) where inconsistency factor was added in the comparisons between treatments AO-CT and BASICS, obtained from the multi-arm studies that compare the treatments *AO-CT*, *e-CHUG* and *BASICS*. The posterior odds calculated as $$PO_{m_{con}m_{2}} = \frac{f(m_{con}|\boldsymbol{y})}{f(m_{2}|\boldsymbol{y})} =\frac{0.7942875}{0.0193625} = 41.0219$$
+
+
+### Global test of inconsistency
+
+The global test of inconsistency is conducted by calculating the Bayes factor of the consistent NMA model over the rest inconsistent NMA models. Thus, the posterior model probabilities of the inconsistent NMA models are summed. An estimate above 1 indicates that the network is globally consistent.
+
+The global test of inconsistency can be obtained like so:
+```{r}
+m$Bayes_Factor
+```
+
+In the example, the Bayes factor estimated above 1, suggesting that the network is globally consistent.
+
+## Model's mixing ability
+
+You can test the mixing ability of the *ssifs* model like so:
+```{r, eval = FALSE}
+spike.slab(m)
+```
+## References
