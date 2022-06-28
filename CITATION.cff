@@ -1,0 +1,256 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.2.2
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "ssifs" in publications use:'
+type: software
+license: GPL-3.0-or-later
+title: 'ssifs: Stochastic Search Inconsistency Factor Selection'
+version: 0.1.0
+abstract: A collection of functions allowing to evaluate the consistency assumption
+  of the random-effects network meta-analysis model in the Bayesian framework.
+authors:
+- family-names: Seitidis
+  given-names: Georgios
+  email: g.seitidis@uoi.gr
+- family-names: Nikolakopoulos
+  given-names: Stavros
+- family-names: Ntzoufras
+  given-names: Ioannis
+- family-names: Mavridis
+  given-names: Dimitris
+preferred-citation:
+  type: manual
+  title: 'ssifs: Stochastic Search Inconsistency Factor Selection'
+  authors:
+  - family-names: Seitidis
+    given-names: Georgios
+    email: g.seitidis@uoi.gr
+  - family-names: Nikolakopoulos
+    given-names: Stavros
+  - family-names: Ntzoufras
+    given-names: Ioannis
+  - family-names: Mavridis
+    given-names: Dimitris
+  version: 0.1.0
+  abstract: A collection of functions allowing to evaluate the consistency assumption
+    of the random-effects network meta-analysis model in the Bayesian framework.
+  repository-code: https://github.com/georgiosseitidis/ssifs
+  url: https://github.com/georgiosseitidis/ssifs
+  contact:
+  - family-names: Seitidis
+    given-names: Georgios
+    email: g.seitidis@uoi.gr
+  license: GPL-3.0-or-later
+  year: '2022'
+repository-code: https://github.com/georgiosseitidis/ssifs
+url: https://github.com/georgiosseitidis/ssifs
+contact:
+- family-names: Seitidis
+  given-names: Georgios
+  email: g.seitidis@uoi.gr
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2022'
+  url: https://www.R-project.org/
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 2.10'
+- type: software
+  title: ggplot2
+  abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  notes: Imports
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@rstudio.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  year: '2022'
+  url: https://CRAN.R-project.org/package=ggplot2
+- type: software
+  title: gtools
+  abstract: 'gtools: Various R Programming Tools'
+  notes: Imports
+  authors:
+  - family-names: Warnes
+    given-names: Gregory R.
+  - family-names: Bolker
+    given-names: Ben
+  - family-names: Lumley
+    given-names: Thomas
+  year: '2022'
+  url: https://CRAN.R-project.org/package=gtools
+- type: software
+  title: igraph
+  abstract: 'igraph: Network Analysis and Visualization'
+  notes: Imports
+  authors:
+  - family-names: file.
+    given-names: See AUTHORS
+  year: '2022'
+  url: https://CRAN.R-project.org/package=igraph
+- type: software
+  title: netmeta
+  abstract: 'netmeta: Network Meta-Analysis using Frequentist Methods'
+  notes: Imports
+  authors:
+  - family-names: Rücker
+    given-names: Gerta
+    orcid: https://orcid.org/0000-0002-2192-2560
+  - family-names: Krahn
+    given-names: Ulrike
+  - family-names: König
+    given-names: Jochem
+    orcid: https://orcid.org/0000-0003-4683-0360
+  - family-names: Efthimiou
+    given-names: Orestis
+    orcid: https://orcid.org/0000-0002-0955-7572
+  - family-names: Davies
+    given-names: Annabel
+    orcid: https://orcid.org/0000-0003-2320-7701
+  - family-names: Papakonstantinou
+    given-names: Theodoros
+    orcid: https://orcid.org/0000-0002-6630-6817
+  - family-names: Schwarzer
+    given-names: Guido
+    email: sc@imbi.uni-freiburg.de
+    orcid: https://orcid.org/0000-0001-6214-9087
+  year: '2022'
+  url: https://CRAN.R-project.org/package=netmeta
+- type: software
+  title: plyr
+  abstract: 'plyr: Tools for Splitting, Applying and Combining Data'
+  notes: Imports
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  url: https://CRAN.R-project.org/package=plyr
+- type: software
+  title: R2jags
+  abstract: 'R2jags: Using R to Run ''JAGS'''
+  notes: Imports
+  authors:
+  - family-names: Su
+    given-names: Yu-Sung
+    email: suyusung@tsinghua.edu.cn
+  - family-names: Yajima,
+    given-names: Masanao
+    email: yajima@bu.edu
+  year: '2022'
+  url: https://CRAN.R-project.org/package=R2jags
+- type: software
+  title: RevEcoR
+  abstract: 'RevEcoR: Reverse Ecology Analysis on Microbiome'
+  notes: Imports
+  authors:
+  - family-names: Cao
+    given-names: Yang
+  - family-names: Li
+    given-names: Fei
+  year: '2022'
+  url: https://CRAN.R-project.org/package=RevEcoR
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2022'
+  url: https://www.R-project.org/
+  institution:
+    name: R Foundation for Statistical Computing
+- type: software
+  title: Rdpack
+  abstract: 'Rdpack: Update and Manipulate Rd Documentation Objects'
+  notes: Imports
+  authors:
+  - family-names: Boshnakov
+    given-names: Georgi N.
+    email: georgi.boshnakov@manchester.ac.uk
+  year: '2022'
+  url: https://CRAN.R-project.org/package=Rdpack
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  url: https://CRAN.R-project.org/package=knitr
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2022'
+  url: https://CRAN.R-project.org/package=rmarkdown

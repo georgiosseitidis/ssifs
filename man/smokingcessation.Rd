@@ -3,8 +3,7 @@
 \docType{data}
 \name{smokingcessation}
 \alias{smokingcessation}
-\title{Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
-assumption for the smoking cessation data}
+\title{Stochastic Search Inconsistency Factor Selection of interventions for smoking cessation}
 \format{
 A data frame with the following columns:
 \tabular{rl}{
@@ -30,7 +29,8 @@ of evidence based on randomized controlled trials.
 \bold{33}, 641--56
 }
 \description{
-Evaluation of the consistency assumption of the Network meta-analysis model
+Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
+assumption for the network meta-analysis model.
 
 These data are used as an example in Dias et al. (2013).
 }

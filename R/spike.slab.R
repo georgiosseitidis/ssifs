@@ -1,15 +1,15 @@
-#' Inconsistency Factor's Spike and Slab
+#' Inconsistency Factors' Spike and Slab
 #'
 #' @description
 #' The function visualizes the inconsistency factor's effect when the inconsistency
-#' factor is included in the Network Meta-Analysis model and when is not.
+#' factor is included in the Network Meta-Analysis (NMA) model and when is not.
 #'
 #' @details
 #' The function creates two density plots for each inconsistency factor based on the inconsistency
-#' factor's effects which obtained from the \code{ssifs} model. The former visualizes the effect when the
-#' inconsistency factor is included in the Network Meta-Analysis model (spike) while the latter when
+#' factors' effects, which are obtained from the \code{ssifs} model. The former visualizes the effect when the
+#' inconsistency factor is included in the NMA model (spike) while the latter when
 #' is not (slab). A good mixing of the SSIFS model indicates that the spike has high density for values
-#' close to zero and the slab is more flat.
+#' close to zero whereas the slab is more flat.
 #'
 #' @param x An object class of \code{ssifs}.
 #'
@@ -28,10 +28,9 @@
 #' treat1 <- Alcohol$treat2
 #' treat2 <- Alcohol$treat1
 #'
-#' # Stochastic Search Inconsistency Factor Selection using as reference treatment AO-CT and the
-#' # Lu & Ades method for the specification of the Z matrix.
+#' # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
 #'
-#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes")
+#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
 #' spike.slab(m)
 #' }
 #'

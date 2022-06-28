@@ -3,8 +3,7 @@
 \docType{data}
 \name{Alcohol}
 \alias{Alcohol}
-\title{Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
-assumption for the comparative effectiveness of brief alcohol interventions.}
+\title{Stochastic Search Inconsistency Factor Selection of brief alcohol interventions.}
 \format{
 A data frame with the following columns:
 \tabular{rl}{
@@ -28,7 +27,8 @@ Network Meta-Analysis Techniques for Synthesizing Prevention Science Evidence
 1-10
 }
 \description{
-Evaluation of the consistency assumption of the Network meta-analysis model
+Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
+assumption for the network meta-analysis model.
 
 These data are used as an example in Seitidis et al. (2021).
 }

@@ -1,8 +1,8 @@
-#' Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
-#' assumption for the smoking cessation data
+#' Stochastic Search Inconsistency Factor Selection of interventions for smoking cessation
 #'
 #' @description
-#' Evaluation of the consistency assumption of the Network meta-analysis model
+#' Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
+#' assumption for the network meta-analysis model.
 #'
 #' These data are used as an example in Dias et al. (2013).
 #'

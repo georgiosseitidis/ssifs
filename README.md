@@ -1,31 +1,35 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # ssifs
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ssifs is to test the consistency assumption of network meta-analysis in the Bayesian framework both globally and locally.
+The goal of *ssifs* is to test the consistency assumption of network
+meta-analysis in the Bayesian framework both globally and locally.
 
 ## Installation
 
-You can install the development version of ssifs like so:
+You can install the development version of *ssifs* like so:
 
 ``` r
 install.packages("devtools")
 devtools::install_github("georgiosseitidis/ssifs")
 ```
 
-## How to use ssifs
+## Usage
 
-We illustrate how to use `ssifs` in the vignette:
+We illustrate how to use *ssifs* in the vignette:
 
 ``` r
 vignette("An_introduction_to_ssifs", package = "ssifs")
 ```
 
-How to cite `ssifs`
+## Citation
 
-```r
-citation(package = "ssifs")
-```
+How to cite **ssifs**:
 
+### APA
+
+### BibTeX

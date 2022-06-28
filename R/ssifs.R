@@ -11,7 +11,7 @@
 #' @param studlab Study labels.
 #' @param ref Reference treatment.
 #' @param method Method used for the specification of the inconsistency factors; Possible choices are: \itemize{
-#' \item \code{"LuAdes" for the Lu & Ades model (Lu & Ades, 2006)}
+#' \item \code{"LuAdes"} for the Lu & Ades model (Lu & Ades, 2006)
 #' \item \code{"DBT"} for the design-by-treatment method (Higgins et al., 2012)
 #' \item \code{"Jackson"} for the random-effects implementation of the design-by-treatment model (Jackson et al., 2014)}
 #' @param rpcons \code{"logical"}. If \code{TRUE}, an informative beta distribution Beta(157, 44) is used for the probability to have a consistent network.
@@ -31,7 +31,7 @@
 #'
 #'
 #' @details
-#' Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection
+#' Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection (SSVS)
 #' (George & McCulloch, 1993) for identifying inconsistencies in Network Meta-Analysis (NMA).
 #'
 #' SSIFS is a two-step method in which the inconsistency factors are specified in the first step, and in the second step,
@@ -40,17 +40,17 @@
 #' the design-by-treatment model (Higgins et al., 2012), and the random-effects implementation of the design-by-treatment model (Jackson et al., 2014).
 #'
 #' After specifying the inconsistency factors, the random-effects NMA model is implemented in the Bayesian framework using the \code{R2jags} package.
-#' An uninformative normal is assumed for the treatment effects prior distribution, while for the heterogeneity parameter tau, an uninformative half normal is assumed.
-#' The function provides the MCMC run of the NMA model (argument \code{MCMC_run}), in order the user be able to check the convergence of the MCMC run
-#' using the classical MCMC diagnostics.
+#' An uninformative normal is assumed for the prior distribution of the treatment effects, while for the heterogeneity parameter tau, an uninformative half-normal is assumed.
+#' The function provides the MCMC run of the NMA model (item \code{MCMC_run}), whereby the user can check the convergence of the MCMC run.
 #'
-#' SSVS is performed by assuming by default a dependency between inconsistency factors which is described by a Zellner g-prior (\code{zellner = TRUE}).
-#' For the specification of the parameter g in the zellner g-prior, the unit information criterion is used (Kass & Wasserman, 1995), which translates in
-#' SSIFS to the total number of network's observed comparisons. By setting the argument \code{zellner = FALSE}, inconsistency factors assumed independent.
+#' SSVS is performed by assuming by default a dependency between inconsistency factors, which is described by a Zellner g-prior (\code{zellner = TRUE}).
+#' Parameter g in the Zellner g-prior is specified using the unit information criterion (Kass & Wasserman, 1995), which translates in
+#' SSIFS to the total number of observed comparisons in the network. By setting the argument \code{zellner = FALSE}, inconsistency factors assumed independent.
 #' Regarding the inclusion probabilities, the function by default assumes an informative Beta distribution (Beta(157, 44)) for the probability to have a
 #' consistent network (\code{rpcons = TRUE}). In the case where \code{rpcons = FALSE}, this probability is assumed fixed and equal to 0.5 (\code{pcons = 0.5}).
+#' The user can modify this probability through the argument \code{pcons}.
 #'
-#' Tunning parameters are specified by the arguments \code{c} and \code{psi}. They should be specified in a way that, when
+#' Tunning parameters in SSVS are specified by the arguments \code{c} and \code{psi}. They should be specified in a way that, when
 #' an inconsistency factor is included in the NMA model, the corresponding coefficient lies in an area close to zero,
 #' and far away from this area when it is not included in the NMA model. Regarding the argument \code{c}, values between 10 and 100
 #' usually perform well in most cases. Argument \code{psi} can be obtained either from a pilot MCMC run of the NMA model as the
@@ -72,7 +72,7 @@
 #' @note
 #' The function uses the random effects inverse-variance NMA model, assuming common heterogeneity between different treatment comparisons,
 #' and no correlation between different studies. Also note that the function keeps only those studies that belong to
-#' the largest sub-network if the network is disconnected, in order to maintain one connected network.
+#' the largest sub-network, if the network is disconnected, in order to maintain one connected network.
 #'
 #' In a multi-arm study with T comparisons, T-1 are required for the NMA model since the rest are obtained as a linear combination.
 #' The function automatically excludes the unnecessary comparisons, while maintaining the basic comparisons (if possible)
@@ -96,15 +96,15 @@
 #' \item{Bayes_Factor}{Bayes factor of the consistent NMA model over the inconsistent NMA model}
 #' \item{Posterior_inclusion_probabilities}{A px6 \code{data.frame} containing the posterior inclusion
 #' probabilities of the inconsistency factors. Columns \code{Comparison} and \code{Design} denote in which comparisons
-#' inconsistency factors are added. When the argument \code{method = "LuAdes"} the column \code{Design} is \code{NA},
+#' inconsistency factors are added. When argument \code{method = "LuAdes"}, column \code{Design} is \code{NA},
 #' because only loop inconsistencies are accounted.
 #' \code{PIP} is the estimated posterior inclusion probability, \code{b} is the estimated median effect
-#'  of the inconsistency factors, \code{b.lb} and \code{b.ub} the lower and upper bound of inconsistency factor's effect estimate
+#'  of the inconsistency factors, \code{b.lb} and \code{b.ub} the lower and upper bound of inconsistency factors' effect estimates,
 #'  respectively}
 #' \item{Posterior_Odds}{A \code{data.frame} containing the model posterior odds. Column \code{IFs} denotes
-#'  in which comparisons inconsistency factor is added, \code{Freq} how many times the model is observed in
+#'  in which comparisons inconsistency factors are added, \code{Freq} the number of times the model is observed in
 #'  the MCMC run, \code{f(m|y)} the posterior model probability and \code{PO_IFCONS} the posterior model odds
-#'  of the consistent NMA model (denoted as \code{NO IFs}) over the inconsistent NMA models.}
+#'  of the consistent NMA model (denoted as \code{NO IFs}) over the corresponding inconsistent NMA model.}
 #' \item{Summary}{A \code{data.frame} containing the summary estimates of the MCMC run of the NMA model}
 #' \item{Z_matrix}{A \code{data.frame} containing in the first 3 columns the treatment comparisons used for
 #'  the Z matrix and the Z matrix in the rest columns}
@@ -152,10 +152,9 @@
 #' treat1 <- Alcohol$treat2
 #' treat2 <- Alcohol$treat1
 #'
-#' # Stochastic Search Inconsistency Factor Selection using as reference treatment AO-CT and the
-#' # Lu & Ades method for the specification of the Z matrix.
+#' # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
 #'
-#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes")
+#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
 #' }
 #'
 ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons = TRUE, pcons = 0.5, zellner = TRUE, c = 3, psi = NULL, digits = 4,

@@ -1,8 +1,8 @@
-#' Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
-#' assumption for the comparative effectiveness of brief alcohol interventions.
+#' Stochastic Search Inconsistency Factor Selection of brief alcohol interventions.
 #'
 #' @description
-#' Evaluation of the consistency assumption of the Network meta-analysis model
+#' Stochastic Search Inconsistency Factor Selection for the evaluation of the consistency
+#' assumption for the network meta-analysis model.
 #'
 #' These data are used as an example in Seitidis et al. (2021).
 #'
