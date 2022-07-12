@@ -43,7 +43,7 @@
 #' An uninformative normal is assumed for the prior distribution of the treatment effects, while for the heterogeneity parameter tau, an uninformative half-normal is assumed.
 #' The function provides the MCMC run of the NMA model (item \code{MCMC_run}), whereby the user can check the convergence of the MCMC run.
 #'
-#' SSVS is performed by assuming by default a dependency between inconsistency factors, which is described by a Zellner g-prior (\code{zellner = TRUE}).
+#' SSVS, by default, assumes that inconsistency factors are dependent and a Zellner g-prior is used to describe this dependency (\code{zellner = TRUE}).
 #' Parameter g in the Zellner g-prior is specified using the unit information criterion (Kass & Wasserman, 1995), which translates in
 #' SSIFS to the total number of observed comparisons in the network. By setting the argument \code{zellner = FALSE}, inconsistency factors assumed independent.
 #' Regarding the inclusion probabilities, the function by default assumes an informative Beta distribution (Beta(157, 44)) for the probability to have a
@@ -94,7 +94,7 @@
 #' A list containing the following components:
 #' \item{MCMC_run}{An object of class \code{rjags} containing the MCMC run of the NMA model}
 #' \item{Bayes_Factor}{Bayes factor of the consistent NMA model over the inconsistent NMA model}
-#' \item{Posterior_inclusion_probabilities}{A px6 \code{data.frame} containing the posterior inclusion
+#' \item{Posterior_inclusion_probabilities}{A \code{data.frame} containing the posterior inclusion
 #' probabilities of the inconsistency factors. Columns \code{Comparison} and \code{Design} denote in which comparisons
 #' inconsistency factors are added. When argument \code{method = "LuAdes"}, column \code{Design} is \code{NA},
 #' because only loop inconsistencies are accounted.
@@ -138,6 +138,7 @@
 #' A Reference Bayesian Test for Nested Hypotheses and its Relationship to the Schwarz Criterion.
 #' \emph{Journal of the American Statistical Association},
 #' \bold{90}(431), 928–934.
+#'
 #'
 #' @export
 #'
