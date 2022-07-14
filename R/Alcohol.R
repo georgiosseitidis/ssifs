@@ -34,6 +34,7 @@
 #'
 #'
 #' @examples
+#' \dontrun{
 #' data(Alcohol)
 #'
 #' TE <- Alcohol$TE
@@ -46,5 +47,5 @@
 #' # Lu & Ades method for the specification of the Z matrix.
 #'
 #' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes")
-#'
+#' }
 NULL

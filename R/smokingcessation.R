@@ -37,6 +37,7 @@
 #'
 #'
 #' @examples
+#' \dontrun{
 #' data(smokingcessation)
 #'
 #' # Transform data from arm-based format to contrast-based format
@@ -61,5 +62,5 @@
 #' # design-by-treatment method for the specification of the Z matrix
 #'
 #' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A")
-#'
+#' }
 NULL

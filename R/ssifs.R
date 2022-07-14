@@ -85,6 +85,9 @@
 #' denoted as \emph{treatment.comparison}_\emph{design}. Thus, if an inconsistency factor is added in the comparison
 #' between treatments A and B of the ABC design, the inconsistency factor name will be \code{A ; B_ABC}.
 #'
+#' In extremely large networks potentially there are exponentially many paths between two nodes, and you may run out of
+#' memory when using the Lu and Ades model for the specification of the inconsistency factors, if your network is lattice-like.
+#'
 #' @importFrom Rdpack reprompt
 #' @importFrom utils combn
 #' @importFrom plyr mapvalues
@@ -165,72 +168,72 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
   # Check arguments
   ##
 
-  if (class(TE) != "numeric") {
+  if (inherits(TE, "numeric") == FALSE) {
     stop("The class of TE must be numeric", call. = FALSE)
-  } else if (class(seTE) != "numeric") {
+  } else if (inherits(seTE, "numeric") == FALSE) {
     stop("The class of seTE must be numeric", call. = FALSE)
-  } else if (!class(treat1) %in% c("character", "numeric", "integer")) {
+  } else if (inherits(treat1, c("character", "numeric", "integer")) == FALSE) {
     stop("The class of treat1 must be either character, or numeric, or integer", call. = FALSE)
-  } else if (!class(treat2) %in% c("character", "numeric", "integer")) {
+  } else if (inherits(treat2, c("character", "numeric", "integer")) == FALSE) {
     stop("The class of treat2 must be either character, or numeric, or integer", call. = FALSE)
-  } else if (!class(studlab) %in% c("character", "numeric", "integer")) {
+  } else if (inherits(studlab, c("character", "numeric", "integer")) == FALSE) {
     stop("The class of studlab must be either character, or numeric, or integer", call. = FALSE)
   } else if (sum(is.na(studlab)) > 0) {
     stop("studlab must not contain missing values", call. = FALSE)
   } else if (!(length(TE) == length(seTE) & length(TE) == length(treat1) &
     length(TE) == length(treat2) & length(TE) == length(studlab))) {
     stop("TE, seTE, treat1, treat2 and studlab must have the same length")
-  } else if (!class(ref) %in% c("character", "numeric")) {
-    stop("The class of ref must be either character or numeric", call. = FALSE)
+  } else if (inherits(ref, c("character", "numeric", "integer")) == FALSE) {
+    stop("The class of ref must be either character, or numeric, or integer", call. = FALSE)
   } else if (!ref %in% c(treat1, treat2)) {
     stop("The reference category must be a node of the network", call. = FALSE)
   } else if (!method %in% c("DBT", "LuAdes", "Jackson")) {
     stop("method must be either DBT, or LuAdes, or Jackson", call. = FALSE)
   } else if (length(method) > 1) {
     stop("The length of method must be one", call. = FALSE)
-  } else if (class(rpcons) != "logical") {
+  } else if (inherits(rpcons, "logical") == FALSE) {
     stop("The class of rpcons is not logical", call. = FALSE)
   } else if (length(rpcons) > 1) {
     stop("The length of rpcons must be one", call. = FALSE)
   } else if (rpcons == FALSE) {
-    if (!class(pcons) %in% c("numeric", "integer")) {
+    if (inherits(pcons, c("numeric", "integer")) == FALSE) {
       stop("The class of pcons must be either numeric, or integer", call. = FALSE)
     } else if (length(pcons) > 1) {
       stop("The length of pcons must be one", call. = FALSE)
     } else if (pcons > 1 | pcons < 0) {
       stop("pcons must be between 0-1", call. = FALSE)
     }
-  } else if (class(zellner) != "logical") {
+  } else if (inherits(zellner, "logical") == FALSE) {
     stop("The class of zellner is not logical", call. = FALSE)
   } else if (length(zellner) > 1) {
     stop("The length of zellner must be one", call. = FALSE)
-  } else if (!class(c) %in% c("numeric", "integer")) {
+  } else if (inherits(c, c("numeric", "integer")) == FALSE) {
     stop("The class of c must be either numeric, or integer", call. = FALSE)
   } else if (length(c) > 1) {
     stop("The length of c must be one", call. = FALSE)
   } else if (c <= 0) {
     stop("c must be a positive number", call. = FALSE)
   } else if (is.null(psi) == FALSE) {
-    if (!class(psi) %in% c("numeric", "integer")) {
+    if (inherits(psi, c("numeric", "integer")) == FALSE) {
       stop("The class of psi must be either numeric, or integer", call. = FALSE)
     } else if (length(psi) > 1) {
       stop("The length of psi must be one", call. = FALSE)
     } else if (psi <= 0) {
       stop("psi must be a positive number", call. = FALSE)
     }
-  } else if (!class(digits) %in% c("numeric", "integer")) {
+  } else if (inherits(digits, c("numeric", "integer")) == FALSE) {
     stop("The class of digits must be either numeric, or integer", call. = FALSE)
   } else if (length(digits) > 1) {
     stop("The length of digits must be one", call. = FALSE)
   } else if (digits < 0 | digits %% 1 != 0) {
     stop("digits must be a positive integer number", call. = FALSE)
-  } else if (!class(M) %in% c("numeric", "integer")) {
+  } else if (inherits(M, c("numeric", "integer")) == FALSE) {
     stop("The class of M must be either numeric, or integer", call. = FALSE)
   } else if (length(M) > 1) {
     stop("The length of M must be one", call. = FALSE)
   } else if (M <= 0 | M %% 1 != 0) {
     stop("M must be a positive integer number", call. = FALSE)
-  } else if (!class(B) %in% c("numeric", "integer")) {
+  } else if (inherits(B, c("numeric", "integer")) == FALSE) {
     stop("The class of B must be either numeric, or integer", call. = FALSE)
   } else if (length(B) > 1) {
     stop("The length of B must be one", call. = FALSE)
@@ -238,7 +241,7 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
     stop("B must be a positive integer number", call. = FALSE)
   } else if (B >= M) {
     stop("M must be larger than B", call. = FALSE)
-  } else if (!class(n_thin) %in% c("numeric", "integer")) {
+  } else if (inherits(n_thin, c("numeric", "integer")) == FALSE) {
     stop("The class of n_thin must be either numeric, or integer", call. = FALSE)
   } else if (length(n_thin) > 1) {
     stop("The length of n_thin must be one", call. = FALSE)
@@ -246,19 +249,19 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
     stop("n_thin must be a positive integer number", call. = FALSE)
   } else if (n_thin >= B) {
     stop("n_thin must be smaller than B", call. = FALSE)
-  } else if (!class(n_chains) %in% c("numeric", "integer")) {
+  } else if (inherits(n_chains, c("numeric", "integer")) == FALSE) {
     stop("The class of n_chains must be either numeric, or integer", call. = FALSE)
   } else if (length(n_chains) > 1) {
     stop("The length of n_chains must be one", call. = FALSE)
   } else if (n_chains < 1 | n_chains %% 1 != 0) {
     stop("n_chains must be a positive integer number larger than one", call. = FALSE)
-  } else if (!class(M_pilot) %in% c("numeric", "integer")) {
+  } else if (inherits(M_pilot, c("numeric", "integer")) == FALSE) {
     stop("The class of M_pilot must be either numeric, or integer", call. = FALSE)
   } else if (length(M_pilot) > 1) {
     stop("The length of M_pilot must be one", call. = FALSE)
   } else if (M_pilot <= 0 | M_pilot %% 1 != 0) {
     stop("M_pilot must be a positive integer number", call. = FALSE)
-  } else if (!class(B_pilot) %in% c("numeric", "integer")) {
+  } else if (inherits(B_pilot, c("numeric", "integer")) == FALSE) {
     stop("The class of B_pilot must be either numeric, or integer", call. = FALSE)
   } else if (length(B_pilot) > 1) {
     stop("The length of B_pilot must be one", call. = FALSE)
@@ -266,7 +269,7 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
     stop("B_pilot must be a positive integer number", call. = FALSE)
   } else if (B_pilot >= M_pilot) {
     stop("M_pilot must be larger than B_pilot", call. = FALSE)
-  } else if (!class(n_thin_pilot) %in% c("numeric", "integer")) {
+  } else if (inherits(n_thin_pilot, c("numeric", "integer")) == FALSE) {
     stop("The class of n_thin_pilot must be either numeric, or integer", call. = FALSE)
   } else if (length(n_thin_pilot) > 1) {
     stop("The length of n_thin_pilot must be one", call. = FALSE)
@@ -274,7 +277,7 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
     stop("n_thin_pilot must be a positive integer number", call. = FALSE)
   } else if (n_thin_pilot >= B_pilot) {
     stop("n_thin_pilot must be smaller than B_pilot", call. = FALSE)
-  } else if (!class(n_chains_pilot) %in% c("numeric", "integer")) {
+  } else if (inherits(n_chains_pilot, c("numeric", "integer")) == FALSE) {
     stop("The class of n_chains_pilot must be either numeric, or integer", call. = FALSE)
   } else if (length(n_chains_pilot) > 1) {
     stop("The length of n_chains_pilot must be one", call. = FALSE)

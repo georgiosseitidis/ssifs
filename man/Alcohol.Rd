@@ -33,6 +33,7 @@ assumption for the network meta-analysis model.
 These data are used as an example in Seitidis et al. (2021).
 }
 \examples{
+\dontrun{
 data(Alcohol)
 
 TE <- Alcohol$TE
@@ -45,5 +46,5 @@ treat2 <- Alcohol$treat1
 # Lu & Ades method for the specification of the Z matrix.
 
 m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes")
-
+}
 }

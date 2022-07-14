@@ -155,6 +155,9 @@ factor is added in the comparison between treatments A and B, the inconsistency 
 In the case where \code{method = "DBT"} or \code{method = "Jackson"}, inconsistency factors' names for multi-arm designs are
 denoted as \emph{treatment.comparison}_\emph{design}. Thus, if an inconsistency factor is added in the comparison
 between treatments A and B of the ABC design, the inconsistency factor name will be \code{A ; B_ABC}.
+
+In extremely large networks potentially there are exponentially many paths between two nodes, and you may run out of
+memory when using the Lu and Ades model for the specification of the inconsistency factors, if your network is lattice-like.
 }
 \examples{
 \dontrun{

@@ -35,7 +35,7 @@
 #' }
 #'
 spike.slab <- function(x) {
-  if (class(x) != "ssifs") {
+  if (inherits(x, "ssifs") == FALSE) {
     stop("The class of x is not of ssifs", call. = FALSE)
   }
 

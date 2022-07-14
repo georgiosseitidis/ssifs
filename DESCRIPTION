@@ -6,7 +6,7 @@ Author: Georgios Seitidis [aut, cre] (<https://orcid.org/0000-0003-0856-1892>),
         Stavros Nikolakopoulos [aut] (<https://orcid.org/0000-0002-9769-3725>),
         Ioannis Ntzoufras [aut] (<https://orcid.org/0000-0002-7615-0334>),
         Dimitris Mavridis [aut] (<https://orcid.org/0000-0003-1041-4592>)
-Authors@: c(person(given="Georgios", family="Seitidis", role=c("aut","cre"), 
+Authors@R: c(person(given="Georgios", family="Seitidis", role=c("aut","cre"), 
                     email="g.seitidis@uoi.gr",
                     comment=c(ORCID="0000-0003-0856-1892")),
             person(given="Stavros", family="Nikolakopoulos", role="aut",
