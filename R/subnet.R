@@ -2,9 +2,12 @@ subnet <- function(data) {
   t <- igraph::graph.data.frame(cbind(as.character(data$treat1), as.character(data$treat2)), directed = FALSE)
 
   # Find the Strong Connected Components using Kosaraju algorithm
-  op <- options(listexpressions = 500000, warn = -1)
+  oldopt <- options()
+  on.exit(options(oldopt))
+
+  options(listexpressions = 500000, warn = -1)
   SCC <- RevEcoR::KosarajuSCC(t)
-  on.exit(options(op), add = TRUE)
+
   ##
   subnetworks <- lapply(SCC, names)
   names(subnetworks) <- 1:length(subnetworks)
