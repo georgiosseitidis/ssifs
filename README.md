@@ -6,9 +6,6 @@
 # <img src="man/figures/ssifs_logo.png" align="right" width="25%"/>
 
 <!-- badges: start -->
-
-[![Build
-status](https://ci.appveyor.com/api/projects/status/emmthhvea0mi7qu6?svg=true)](https://ci.appveyor.com/project/georgiosseitidis/ssifs)
 <!-- badges: end -->
 
 The goal of *ssifs* is to test the consistency assumption of network
