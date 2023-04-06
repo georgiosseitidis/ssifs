@@ -3,8 +3,5 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   An_introduction_to_ssifs: An_introduction_to_ssifs.html
-last_built: 2023-04-06T21:50Z
-urls:
-  reference: https://georgiosseitidis.github.io/ssifs/reference
-  article: https://georgiosseitidis.github.io/ssifs/articles
+last_built: 2023-04-06T21:53Z
 
