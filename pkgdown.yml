@@ -1,9 +1,9 @@
-pandoc: '2.18'
-pkgdown: 2.0.3
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   An_introduction_to_ssifs: An_introduction_to_ssifs.html
-last_built: 2022-07-14T14:40Z
+last_built: 2023-04-06T21:50Z
 urls:
   reference: https://georgiosseitidis.github.io/ssifs/reference
   article: https://georgiosseitidis.github.io/ssifs/articles
