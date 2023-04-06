@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(Alcohol)
 #'
 #' TE <- Alcohol$TE
@@ -29,7 +29,6 @@
 #' treat2 <- Alcohol$treat1
 #'
 #' # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
-#'
 #' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
 #' spike.slab(m)
 #' }

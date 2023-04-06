@@ -34,7 +34,7 @@
 #' Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection (SSVS)
 #' (George & McCulloch, 1993) for identifying inconsistencies in Network Meta-Analysis (NMA).
 #'
-#' SSIFS is a two-step method in which the inconsistency factors are specified in the first step, and in the second step,
+#' SSIFS (Seitidis et al., 2022), is a two-step method in which the inconsistency factors are specified in the first step, and in the second step,
 #' SSVS is performed on the inconsistency factors. The method used for the specification of the inconsistency factors, is
 #' controlled by the argument \code{method}. Among the choices that may be considered are the Lu and Ades model (Lu & Ades, 2006),
 #' the design-by-treatment model (Higgins et al., 2012), and the random-effects implementation of the design-by-treatment model (Jackson et al., 2014).
@@ -43,17 +43,17 @@
 #' An uninformative normal is assumed for the prior distribution of the treatment effects, while for the heterogeneity parameter tau, an uninformative half-normal is assumed.
 #' The function provides the MCMC run of the NMA model (item \code{MCMC_run}), whereby the user can check the convergence of the MCMC run.
 #'
-#' SSVS, by default, assumes that inconsistency factors are dependent and a Zellner g-prior is used to describe this dependency (\code{zellner = TRUE}).
-#' Parameter g in the Zellner g-prior is specified using the unit information criterion (Kass & Wasserman, 1995), which translates in
-#' SSIFS to the total number of observed comparisons in the network. By setting the argument \code{zellner = FALSE}, inconsistency factors assumed independent.
+#' SSIFS by default assumes that inconsistency factors are dependent by using a Zellner g-prior to describe this dependency (\code{zellner = TRUE}).
+#' Parameter g in the Zellner g-prior is specified using the unit information criterion (Kass & Wasserman, 1995), which is translated in
+#' SSIFS to the total number of observed comparisons that are included in the network. By setting the argument \code{zellner = FALSE}, inconsistency factors are assumed independent.
 #' Regarding the inclusion probabilities, the function by default assumes an informative Beta distribution (Beta(157, 44)) for the probability to have a
 #' consistent network (\code{rpcons = TRUE}). In the case where \code{rpcons = FALSE}, this probability is assumed fixed and equal to 0.5 (\code{pcons = 0.5}).
 #' The user can modify this probability through the argument \code{pcons}.
 #'
-#' Tunning parameters in SSVS are specified by the arguments \code{c} and \code{psi}. They should be specified in a way that, when
+#' Tuning parameters in SSIFS are specified by the arguments \code{c} and \code{psi}. They should be specified in a way that, when
 #' an inconsistency factor is included in the NMA model, the corresponding coefficient lies in an area close to zero,
 #' and far away from this area when it is not included in the NMA model. Regarding the argument \code{c}, values between 10 and 100
-#' usually perform well in most cases. Argument \code{psi} can be obtained either from a pilot MCMC run of the NMA model as the
+#' usually perform well in most cases. Argument \code{psi} can be obtained either from a pilot MCMC run of the NMA model, as the
 #' standard deviation of the inconsistency factors (\code{psi = NULL}), or can be set fixed a-priory by the analyst.
 #'
 #' In order to evaluate the consistency assumption, we can examine \itemize{
@@ -62,15 +62,15 @@
 #' \item{the posterior model probabilities (item \code{Posterior_Odds})}
 #' \item{the posterior model odds (item \code{Posterior_Odds})}
 #' \item{the Bayes factor of the consistent NMA model over the inconsistent NMA models (item \code{Bayes_Factor})} }
-#' A posterior inclusion probability above 0.5, for example, indicates inconsistency.
+#' A posterior inclusion probability above 0.5 indicates inconsistency.
 #' Also, an inconsistent NMA model with large posterior model probability suggests the presence of inconsistency. Item \code{Bayes_Factor}
 #' provides a global test for testing the consistency assumption, by calculating the Bayes factor of the consistent NMA model (model without inconsistency factors) over the
-#' rest inconsistent NMA models observed in the MCMC run. An estimate above 1 favors the consistent NMA model.
+#' rest inconsistent NMA models that  were observed in the MCMC run. An estimate above 1 favors the consistent NMA model.
 #' For the calculation of the Bayes factor, the inconsistent NMA models are treated as a single model and the corresponding
 #' posterior model probabilities are summed.
 #'
 #' @note
-#' The function uses the random effects inverse-variance NMA model, assuming common heterogeneity between different treatment comparisons,
+#' The function uses the random effects inverse-variance NMA model, and assumes common heterogeneity between different treatment comparisons
 #' and no correlation between different studies. Also note that the function keeps only those studies that belong to
 #' the largest sub-network, if the network is disconnected, in order to maintain one connected network.
 #'
@@ -122,6 +122,11 @@
 #' \emph{Journal of the American Statistical Association},
 #' \bold{88}(423), 881-889.
 #'
+#' Seitidis, G., Nikolakopoulos, S., Ntzoufras, I., & Mavridis, D. (2022):
+#' Inconsistency identification in network meta-analysis via stochastic search variable selection.
+#' \emph{arXiv preprint},
+#' \bold{arXiv:2211.07258}.
+#'
 #' Lu, G., & Ades, A. E. (2006):
 #' Assessing evidence inconsistency in mixed treatment comparisons.
 #' \emph{Journal of the American Statistical Association},
@@ -146,8 +151,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
+#' \donttest{
 #' data(Alcohol)
 #'
 #' TE <- Alcohol$TE
@@ -157,7 +161,6 @@
 #' treat2 <- Alcohol$treat1
 #'
 #' # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
-#'
 #' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
 #' }
 #'

@@ -24,7 +24,7 @@ is not (slab). A good mixing of the SSIFS model indicates that the spike has hig
 close to zero whereas the slab is more flat.
 }
 \examples{
-\dontrun{
+\donttest{
 data(Alcohol)
 
 TE <- Alcohol$TE
@@ -34,7 +34,6 @@ treat1 <- Alcohol$treat2
 treat2 <- Alcohol$treat1
 
 # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
-
 m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
 spike.slab(m)
 }

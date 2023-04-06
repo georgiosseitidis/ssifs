@@ -30,7 +30,7 @@ text-align: justify}
 
 ## Quick Revision
 
-Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection [@george1993variable] for identifying inconsistencies in Network Meta-Analysis (NMA). SSIFS is a two-step method, where in the first step inconsistency factors are specified, and in the second step, variable selection on inconsistency
+Stochastic Search Inconsistency Factor Selection (SSIFS) is the extension of Stochastic Search Variable Selection (SSVS) [@george1993variable] for identifying inconsistencies in Network Meta-Analysis (NMA). SSIFS is a two-step method, where in the first step inconsistency factors are specified, and in the second step, variable selection on inconsistency
 factors is performed using the SSVS method.
 
 ## Inverse-variance NMA model
@@ -40,15 +40,14 @@ $$ \boldsymbol{y = X\mu + \beta +bZ + \epsilon}, \quad \boldsymbol{\epsilon} \si
 
 where $\boldsymbol{y}$ denotes the treatments effect, $\boldsymbol{X}$ the design matrix,
 $\boldsymbol{\mu}$ the underlying basic contrasts, $\boldsymbol{\beta}$ the normally
- distributed random effects, $\boldsymbol{b}$ the effect of inconsistency factors, $\boldsymbol{Z}$ the inconsistency factor's index matrix, and $\boldsymbol{\epsilon}$ the normally distributed sampling errors.
+ distributed random-effects, $\boldsymbol{b}$ the effect of inconsistency factors, $\boldsymbol{Z}$ the inconsistency factor's index matrix, and $\boldsymbol{\epsilon}$ the normally distributed sampling errors.
 Correlation matrix $\boldsymbol{\Delta}$ is a block diagonal matrix, assuming common heterogeneity across treatment comparisons, while covariance matrix $\boldsymbol{\Sigma}$ is assumed known and obtained from the data
 based on @franchini2012accounting. Matrix  $\boldsymbol{Z}$ contains as elements values 1, -1 and 0, indicating in which comparisons inconsistency factor is added. Among the choices that may be considered for the specification of the $\boldsymbol{Z}$ matrix are the Lu and Ades model [@lu2006assessing], the design-by-treatment model [@higgins2012consistency], and the random-effects implementation of the design-by-treatment model [@jackson2014design].
 
 ## Variable Selection
 
 In SSIFS the effect of an inconsistency factor $\ell$ is described from a mixture of two normal distributions,
-which can be written as $$b_{\ell} | \gamma_{\ell} \sim (1-\gamma_{\ell}) N(0, \psi_{\ell}^{2}) + \gamma_\ell N(0, c^{2}\psi_\ell^{2})$$ where $b_{\ell}$ is the effect of the inconsistency factor, $\gamma_{\ell}$ is an auxiliary variable indicating if the inconsistency factor is included in the NMA model, and $c$, $\psi_{\ell}$ are tunning
-parameters controlling the mixing ability of the method. 
+which can be written as $$b_{\ell} | \gamma_{\ell} \sim (1-\gamma_{\ell}) N(0, \psi_{\ell}^{2}) + \gamma_\ell N(0, c^{2}\psi_\ell^{2})$$ where $b_{\ell}$ is the effect of the inconsistency factor, $\gamma_{\ell}$ is an auxiliary variable indicating if the inconsistency factor is included in the NMA model, and $c$, $\psi_{\ell}$ are tuning parameters controlling the mixing ability of the method. 
 
 In matrix notation SSIFS is written as $$\boldsymbol{b | \gamma} \sim N( \boldsymbol{0}, \boldsymbol{D_\gamma R D_\gamma} ) $$
 where 
@@ -74,9 +73,9 @@ Prior inclusion probabilities of the inconsistency factors are specified as
 $$\gamma_\ell \sim Bernoulli(1 - \pi_{con}^{ \frac{1}{p}}),  \quad \ell = 1, 2, \ldots, p$$
 where $\pi_{con}$ is the probability to have a consistent network and reflects our prior believes on how likely is to have a consistent network. In a review of 201 networks, 44 networks were found to be globally inconsistent [@veroniki2021prevalence]. Thus, $\pi_{con} \sim Beta(157, 44)$ is proposed.
 
-## Tunning
+## Tuning
 
-Tunning is crucial in SSIFS in order to ensure a good mixing of the method. Ideally, the effect of an inconsistency factor when it is included in the NMA model should lie in an area close to zero, and far away from this area when it is not included in the NMA model. Regarding parameter $c$, values between 10 and 100 usually perform well in most cases [@george1993variable; @doi:https://doi.org/10.1002/9781118445112.stat07829]. Possible values of parameter $\psi_\ell$ could be obtained from a pilot MCMC run of the NMA model as the standard deviation of the inconsistency factors. 
+Tuning is crucial in SSIFS in order to ensure a good mixing of the method. Ideally, the effect of an inconsistency factor when it is included in the NMA model should lie in an area close to zero, and far away from this area when it is not included in the NMA model. Regarding parameter $c$, values between 10 and 100 usually perform well in most cases [@george1993variable; @doi:https://doi.org/10.1002/9781118445112.stat07829]. Possible values of parameter $\psi_\ell$ could be obtained from a pilot MCMC run of the NMA model as the standard deviation of the inconsistency factors. 
 
 ### Minimum value of inconsistency
 
@@ -96,7 +95,7 @@ $$f\hat{(m|\boldsymbol{y})}=\frac{1}{M-B} \sum_{t=B+1}^{M}{I(m^{(t)}=m)}, \quad 
 where $M$ is the number of MCMC iterations, $B$ the burn-in period and $m^{(t)}$ a model indicator which transforms the $\boldsymbol{\gamma}$ to a unique decimal number.
 By examined the posterior odds of the consistent NMA model ($m(\boldsymbol{\gamma}) = 0$) over the inconsistent NMA models, we can evaluate the consistency assumption. Also, the comparison between the consistent NMA model ($m(\boldsymbol{\gamma}) = 0$) over all the other observed inconsistent NMA models ($m(\boldsymbol{\gamma}) \ne 0$), indicates if the NMA model is globally consistent.
 
-# Model Implementation through siffs
+# Implementation through ssifs
 
 ## Installation
 
@@ -107,11 +106,11 @@ devtools::install_github("georgiosseitidis/ssifs")
 ```
 
 ## Data
-`ssifs` requires the contrast-based data used for the network meta-analysis. Also, in the multi-arm studies, all possible comparisons must be provided. In the case where the network is disconnected, `ssifs` keeps only those studies that belong to the largest sub-network in order to maintain one connected network.
+`ssifs` requires the contrast-based data used for the NMA model. Also, in the multi-arm studies, all possible comparisons must be provided. In the case where the network is disconnected, `ssifs` keeps only those studies that belong to the largest sub-network in order to maintain one connected network.
 
 ## Example
 
-Load the brief alcohol intervention dataset from the **ssifs** package. The dataset is from a published network meta-analysis [@seitidis2022network; @hennessy2019comparative] and contains 37 studies evaluating the comparative effectiveness of brief alcohol interventions on preventing hazardous drinking in college students. 
+Load the brief alcohol intervention dataset from the **ssifs** package. The dataset is from a published NMA [@seitidis2022network; @hennessy2019comparative] and contains 37 studies evaluating the comparative effectiveness of brief alcohol interventions on preventing hazardous drinking in college students. 
 
 ```{r}
 library(ssifs)
