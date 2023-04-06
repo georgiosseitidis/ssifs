@@ -1,9 +1,9 @@
 ---
-title: "An introduction to the Stochastic Search Variable Selection method using the ssifs package"
+title: "An introduction to the Stochastic Search Inconsistency Factor Selection method using the ssifs package"
 author: "Georgios Seitidis"
 output: rmarkdown::html_vignette
 description: > 
- This document introduces you to the Stochastic Search Variable Inconsistency Factor Selection (SSIFS) method for identifying inconsistency in network meta-analysis, and how to apply through the **ssifs** package.
+ This document introduces you to the Stochastic Search Variable Inconsistency Factor Selection (SSIFS) method for identifying inconsistencies in network meta-analysis (NMA), and how to implement the method through the **ssifs** R package.
 bibliography: references.bib 
 latex_engine: xelatex
 link-citations: true
