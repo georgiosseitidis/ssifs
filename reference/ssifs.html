@@ -180,19 +180,19 @@ by treating the inconsistency detection as a variable selection problem. The con
 
 <p>A list containing the following components:</p>
 <dl><dt>MCMC_run</dt>
-<dd><p>An object of class <code>rjags</code> containing the MCMC run of the NMA model</p></dd>
+<dd><p>An object of class <code>rjags</code> containing the MCMC run of the NMA model.</p></dd>
 
 <dt>Bayes_Factor</dt>
-<dd><p>Bayes factor of the consistent NMA model over the inconsistent NMA model</p></dd>
+<dd><p>Bayes factor of the consistent NMA model over the inconsistent NMA model.</p></dd>
 
 <dt>Posterior_inclusion_probabilities</dt>
 <dd><p>A <code>data.frame</code> containing the posterior inclusion
 probabilities of the inconsistency factors. Columns <code>Comparison</code> and <code>Design</code> denote in which comparisons
 inconsistency factors are added. When argument <code>method = "LuAdes"</code>, column <code>Design</code> is <code>NA</code>,
 because only loop inconsistencies are accounted.
-<code>PIP</code> is the estimated posterior inclusion probability, <code>b</code> is the estimated median effect
- of the inconsistency factors, <code>b.lb</code> and <code>b.ub</code> the lower and upper bound of inconsistency factors' effect estimates,
- respectively</p></dd>
+<code>PIP</code> denotes the estimated posterior inclusion probability, <code>b</code> the estimated median effect
+ of the inconsistency factors, <code>b.lb</code> and <code>b.ub</code> the lower and upper bounds of the inconsistency factors' effect estimates,
+ respectively.</p></dd>
 
 <dt>Posterior_Odds</dt>
 <dd><p>A <code>data.frame</code> containing the model posterior odds. Column <code>IFs</code> denotes
@@ -201,21 +201,21 @@ because only loop inconsistencies are accounted.
  of the consistent NMA model (denoted as <code>NO IFs</code>) over the corresponding inconsistent NMA model.</p></dd>
 
 <dt>Summary</dt>
-<dd><p>A <code>data.frame</code> containing the summary estimates of the MCMC run of the NMA model</p></dd>
+<dd><p>A <code>data.frame</code> containing the summary estimates of the MCMC run of the NMA model.</p></dd>
 
 <dt>Z_matrix</dt>
 <dd><p>A <code>data.frame</code> containing in the first 3 columns the treatment comparisons used for
- the Z matrix and the Z matrix in the rest columns</p></dd>
+ the Z matrix and the Z matrix in the rest columns.</p></dd>
 
 <dt>disconnected_studies</dt>
-<dd><p>A vector with the studies that were excluded, in order to have
- a connected network</p></dd>
+<dd><p>A vector with the studies that were excluded in order to have
+ a connected network.</p></dd>
 
 <dt>n_subnetworks</dt>
-<dd><p>Number of sub-networks</p></dd>
+<dd><p>Number of sub-networks.</p></dd>
 
 <dt>subnetworks</dt>
-<dd><p>A list with the sub-networks of the original NMA data</p></dd>
+<dd><p>A list with the sub-networks of the original NMA data.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -254,20 +254,20 @@ posterior model probabilities are summed.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>The function uses the random effects inverse-variance NMA model, and assumes common heterogeneity between different treatment comparisons
-and no correlation between different studies. Also note that the function keeps only those studies that belong to
-the largest sub-network, if the network is disconnected, in order to maintain one connected network.</p>
+    <p>The function uses the random-effects inverse-variance NMA model, and assumes common heterogeneity between different treatment comparisons
+and no correlation between different studies. Additionally, when the network is disconnected, the function keeps only those studies that
+belong to the largest sub-network.</p>
 <p>In a multi-arm study with T comparisons, T-1 are required for the NMA model since the rest are obtained as a linear combination.
 The function automatically excludes the unnecessary comparisons, while maintaining the basic comparisons (if possible)
-and comparisons in which an inconsistency factor has been added (if possible). Therefore, all possible comparisons
+and comparisons in which an inconsistency factor has been added. Therefore, all possible comparisons
 of multi-arm studies must be provided by the user.</p>
 <p>For the names of the inconsistency factor, treatments are separated by the symbol <code>" ; "</code>. For example, if an inconsistency
 factor is added in the comparison between treatments A and B, the inconsistency factor name will be <code>A ; B</code>.
 In the case where <code>method = "DBT"</code> or <code>method = "Jackson"</code>, inconsistency factors' names for multi-arm designs are
 denoted as <em>treatment.comparison</em>_<em>design</em>. Thus, if an inconsistency factor is added in the comparison
 between treatments A and B of the ABC design, the inconsistency factor name will be <code>A ; B_ABC</code>.</p>
-<p>In extremely large networks potentially there are exponentially many paths between two nodes, and you may run out of
-memory when using the Lu and Ades model for the specification of the inconsistency factors, if your network is lattice-like.</p>
+<p>In extremely large networks, the number of paths between two nodes may be exponentially high. If your network is lattice-like,
+you may run out of memory during the specification of the inconsistency factors with the Lu and Ades model.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

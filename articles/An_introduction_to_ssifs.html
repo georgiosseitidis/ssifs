@@ -108,7 +108,7 @@ factors is described by the following equation <span class="math display">\[ \bo
 \quad and \quad \boldsymbol{\beta} \sim N(\boldsymbol{0},
 \boldsymbol{\Delta})\]</span></p>
 <p>where <span class="math inline">\(\boldsymbol{y}\)</span> denotes the
-treatments effect, <span class="math inline">\(\boldsymbol{X}\)</span>
+treatments’ effect, <span class="math inline">\(\boldsymbol{X}\)</span>
 the design matrix, <span class="math inline">\(\boldsymbol{\mu}\)</span>
 the underlying basic contrasts, <span class="math inline">\(\boldsymbol{\beta}\)</span> the normally
 distributed random-effects, <span class="math inline">\(\boldsymbol{b}\)</span> the effect of
@@ -185,7 +185,7 @@ deviation of the inconsistency factors.</p>
 <div class="section level4">
 <h4 id="minimum-value-of-inconsistency">Minimum value of inconsistency<a class="anchor" aria-label="anchor" href="#minimum-value-of-inconsistency"></a>
 </h4>
-<p>By properly tunning parameters <span class="math inline">\(c\)</span>
+<p>By properly tuning parameters <span class="math inline">\(c\)</span>
 and <span class="math inline">\(\psi_\ell\)</span>, a difference between
 direct and indirect evidence that is of practical significance (say
 <span class="math inline">\(\omega\)</span>) can be defined. Thus, an
@@ -257,8 +257,7 @@ sub-network in order to maintain one connected network.</p>
 <h3 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h3>
 <p>Load the brief alcohol intervention dataset from the
-<strong>ssifs</strong> package. The dataset is from a published NMA
-<span class="citation">(<a href="#ref-seitidis2022network" role="doc-biblioref">Seitidis et al. 2022</a>; <a href="#ref-hennessy2019comparative" role="doc-biblioref">Hennessy et al.
+<code>ssifs</code> package. The dataset is from a published NMA <span class="citation">(<a href="#ref-seitidis2022network" role="doc-biblioref">Seitidis et al. 2022</a>; <a href="#ref-hennessy2019comparative" role="doc-biblioref">Hennessy et al.
 2019</a>)</span> and contains 37 studies evaluating the comparative
 effectiveness of brief alcohol interventions on preventing hazardous
 drinking in college students.</p>
@@ -312,7 +311,7 @@ probability from the argument <code>pcons</code>.</p>
 <span><span class="co">#&gt; 8      AO-CT ; BASICS AO-CTe-CHUGBASICS 0.0232  0.0034 -0.0882 0.1957</span></span>
 <span><span class="co">#&gt; 9      AO-CT ; AlcEdu AlcEduAO-CTAlc101 0.0227 -0.0027 -0.1424 0.0662</span></span>
 <span><span class="co">#&gt; 10     AO-CT ; Alc101 AlcEduAO-CTAlc101 0.0219  0.0016 -0.0998 0.1475</span></span></code></pre></div>
-<p>The first two columns refers to comparisons where inconsistency
+<p>The first two columns refer to comparisons where inconsistency
 factors are added. For example, the first row refers to the
 inconsistency factor that added to the comparisons between interventions
 <em>Alc101</em> and <em>BASICS</em>, obtained from the two-arm studies
@@ -320,7 +319,7 @@ that compare these interventions. The fifth row refers to the
 inconsistency factor that added to the comparison between interventions
 <em>AO-CT</em> and <em>AlcEdu</em>, obtained from the multi-arm studies
 that compare the interventions <em>AO-CT</em>, <em>AlcEdu</em> and
-<em>e-CHUG</em>. Column <strong>PIP</strong> refer to posterior
+<em>e-CHUG</em>. Column <strong>PIP</strong> refers to posterior
 inclusion probability, while columns <strong>b,</strong>
 <strong>b.lb</strong> and <strong>b.ub</strong> to the inconsistency
 factors effect estimates with the corresponding 95% credible
