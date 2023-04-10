@@ -59,7 +59,7 @@
 #' treat2 <- smoking.pair$treat2
 #'
 #' # Stochastic Search Inconsistency Factor Selection using as reference treatment A and the
-#' # design-by-treatment method for the specification of the Z matrix
+#' # design-by-treatment method for the specification of the Z matrix.
 #'
 #' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A")
 #' }

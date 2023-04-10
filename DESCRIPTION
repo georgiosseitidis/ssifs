@@ -19,7 +19,7 @@ Authors@R: c(person(given="Georgios", family="Seitidis", role=c("aut","cre"),
                     email="dmavridi@uoi.gr",
                     comment=c(ORCID="0000-0003-1041-4592")))
 Maintainer: Georgios Seitidis <g.seitidis@uoi.gr>
-Description: Evaluating the consistency assumption of Network Meta-Analysis both globally and locally in the Bayesian framework. Incosistencies are located by applying Bayesian variable selection to the inconsistency factors. The implemention of the method is described by Seitidis et al. (2022) <arXiv:2211.07258>.
+Description: Evaluating the consistency assumption of Network Meta-Analysis both globally and locally in the Bayesian framework. Inconsistencies are located by applying Bayesian variable selection to the inconsistency factors. The implementation of the method is described by Seitidis et al. (2022) <arXiv:2211.07258>.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

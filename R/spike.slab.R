@@ -7,11 +7,11 @@
 #' @details
 #' The function creates two density plots for each inconsistency factor based on the inconsistency
 #' factors' effects, which are obtained from the \code{ssifs} model. The former visualizes the effect when the
-#' inconsistency factor is included in the NMA model (spike) while the latter when
+#' inconsistency factor is included in the NMA model (spike), while the latter when
 #' is not (slab). A good mixing of the SSIFS model indicates that the spike has high density for values
-#' close to zero whereas the slab is more flat.
+#' close to zero whereas the slab is flatter.
 #'
-#' @param x An object class of \code{ssifs}.
+#' @param x An object of class \code{ssifs}.
 #'
 #' @return An object of class \code{ggplot}.
 #' @importFrom ggplot2 ggplot aes %+% geom_density xlab ylab ggtitle guides guide_legend theme element_text

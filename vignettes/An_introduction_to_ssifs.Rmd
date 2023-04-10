@@ -38,7 +38,7 @@ factors is performed using the SSVS method.
 The inverse-variance random-effects NMA model adjusted to include $\ell =1, 2, \ldots, p$ inconsistency factors is described by the following equation
 $$ \boldsymbol{y = X\mu + \beta +bZ + \epsilon}, \quad \boldsymbol{\epsilon} \sim N(\boldsymbol{0}, \boldsymbol{\Sigma} ) \quad and \quad \boldsymbol{\beta} \sim N(\boldsymbol{0}, \boldsymbol{\Delta})$$
 
-where $\boldsymbol{y}$ denotes the treatments effect, $\boldsymbol{X}$ the design matrix,
+where $\boldsymbol{y}$ denotes the treatments' effect, $\boldsymbol{X}$ the design matrix,
 $\boldsymbol{\mu}$ the underlying basic contrasts, $\boldsymbol{\beta}$ the normally
  distributed random-effects, $\boldsymbol{b}$ the effect of inconsistency factors, $\boldsymbol{Z}$ the inconsistency factor's index matrix, and $\boldsymbol{\epsilon}$ the normally distributed sampling errors.
 Correlation matrix $\boldsymbol{\Delta}$ is a block diagonal matrix, assuming common heterogeneity across treatment comparisons, while covariance matrix $\boldsymbol{\Sigma}$ is assumed known and obtained from the data
@@ -79,7 +79,7 @@ Tuning is crucial in SSIFS in order to ensure a good mixing of the method. Ideal
 
 ### Minimum value of inconsistency
 
-By properly tunning parameters $c$ and $\psi_\ell$, a difference between direct and indirect evidence that is of practical significance (say $\omega$) can be defined. Thus, an inconsistency factor with a coefficient larger than $\omega$ in absolute values ($|b_{\ell}| > \omega$), should be included in the NMA model ($\gamma_\ell = 1$). In the case where $\boldsymbol{R = I}$, the inconsistency factor will have higher probability to be included in the NMA model when $$|b_\ell |> \psi_\ell \sqrt{\xi(c)}, \quad \xi(c) = \frac{2c^2 \log{c}}{c^2 -1}.$$ For example, if a difference above 0.2 is considered important, one possible parameterization is to set $c = 10$ and $\psi_\ell = \frac{0.2}{\sqrt{\xi(10)}} \approx 0.1.$ 
+By properly tuning parameters $c$ and $\psi_\ell$, a difference between direct and indirect evidence that is of practical significance (say $\omega$) can be defined. Thus, an inconsistency factor with a coefficient larger than $\omega$ in absolute values ($|b_{\ell}| > \omega$), should be included in the NMA model ($\gamma_\ell = 1$). In the case where $\boldsymbol{R = I}$, the inconsistency factor will have higher probability to be included in the NMA model when $$|b_\ell |> \psi_\ell \sqrt{\xi(c)}, \quad \xi(c) = \frac{2c^2 \log{c}}{c^2 -1}.$$ For example, if a difference above 0.2 is considered important, one possible parameterization is to set $c = 10$ and $\psi_\ell = \frac{0.2}{\sqrt{\xi(10)}} \approx 0.1.$ 
 
 ## Inconsistency Detection
 
@@ -110,7 +110,7 @@ devtools::install_github("georgiosseitidis/ssifs")
 
 ## Example
 
-Load the brief alcohol intervention dataset from the **ssifs** package. The dataset is from a published NMA [@seitidis2022network; @hennessy2019comparative] and contains 37 studies evaluating the comparative effectiveness of brief alcohol interventions on preventing hazardous drinking in college students. 
+Load the brief alcohol intervention dataset from the `ssifs` package. The dataset is from a published NMA [@seitidis2022network; @hennessy2019comparative] and contains 37 studies evaluating the comparative effectiveness of brief alcohol interventions on preventing hazardous drinking in college students. 
 
 ```{r}
 library(ssifs)
@@ -149,8 +149,8 @@ Posterior inclusion probabilities can be obtained like so:
 m$Posterior_inclusion_probabilities
 ```
 
-The first two columns refers to comparisons where inconsistency factors are added. For example, the first row refers to the inconsistency factor that added to the comparisons between interventions *Alc101* and *BASICS*, obtained from the two-arm studies that compare these interventions. The fifth row refers to the inconsistency factor that added to the comparison between interventions *AO-CT* and *AlcEdu*, obtained from the multi-arm studies that compare the interventions *AO-CT*, *AlcEdu* and *e-CHUG*.
-Column **PIP** refer to posterior inclusion probability, while columns **b,** **b.lb** and **b.ub** to the inconsistency factors effect estimates with the corresponding 95% credible interval. 
+The first two columns refer to comparisons where inconsistency factors are added. For example, the first row refers to the inconsistency factor that added to the comparisons between interventions *Alc101* and *BASICS*, obtained from the two-arm studies that compare these interventions. The fifth row refers to the inconsistency factor that added to the comparison between interventions *AO-CT* and *AlcEdu*, obtained from the multi-arm studies that compare the interventions *AO-CT*, *AlcEdu* and *e-CHUG*.
+Column **PIP** refers to posterior inclusion probability, while columns **b,** **b.lb** and **b.ub** to the inconsistency factors effect estimates with the corresponding 95% credible interval. 
 
 If `method = "LuAdes"`, the column **Design** is `NA`. This is because the Lu & Ades model accounts only for loop inconsistencies.
 

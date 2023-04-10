@@ -76,26 +76,26 @@ ssifs(
 }
 \value{
 A list containing the following components:
-\item{MCMC_run}{An object of class \code{rjags} containing the MCMC run of the NMA model}
-\item{Bayes_Factor}{Bayes factor of the consistent NMA model over the inconsistent NMA model}
+\item{MCMC_run}{An object of class \code{rjags} containing the MCMC run of the NMA model.}
+\item{Bayes_Factor}{Bayes factor of the consistent NMA model over the inconsistent NMA model.}
 \item{Posterior_inclusion_probabilities}{A \code{data.frame} containing the posterior inclusion
 probabilities of the inconsistency factors. Columns \code{Comparison} and \code{Design} denote in which comparisons
 inconsistency factors are added. When argument \code{method = "LuAdes"}, column \code{Design} is \code{NA},
 because only loop inconsistencies are accounted.
-\code{PIP} is the estimated posterior inclusion probability, \code{b} is the estimated median effect
- of the inconsistency factors, \code{b.lb} and \code{b.ub} the lower and upper bound of inconsistency factors' effect estimates,
- respectively}
+\code{PIP} denotes the estimated posterior inclusion probability, \code{b} the estimated median effect
+ of the inconsistency factors, \code{b.lb} and \code{b.ub} the lower and upper bounds of the inconsistency factors' effect estimates,
+ respectively.}
 \item{Posterior_Odds}{A \code{data.frame} containing the model posterior odds. Column \code{IFs} denotes
  in which comparisons inconsistency factors are added, \code{Freq} the number of times the model is observed in
  the MCMC run, \code{f(m|y)} the posterior model probability and \code{PO_IFCONS} the posterior model odds
  of the consistent NMA model (denoted as \code{NO IFs}) over the corresponding inconsistent NMA model.}
-\item{Summary}{A \code{data.frame} containing the summary estimates of the MCMC run of the NMA model}
+\item{Summary}{A \code{data.frame} containing the summary estimates of the MCMC run of the NMA model.}
 \item{Z_matrix}{A \code{data.frame} containing in the first 3 columns the treatment comparisons used for
- the Z matrix and the Z matrix in the rest columns}
-\item{disconnected_studies}{A vector with the studies that were excluded, in order to have
- a connected network}
-\item{n_subnetworks}{Number of sub-networks}
-\item{subnetworks}{A list with the sub-networks of the original NMA data}
+ the Z matrix and the Z matrix in the rest columns.}
+\item{disconnected_studies}{A vector with the studies that were excluded in order to have
+ a connected network.}
+\item{n_subnetworks}{Number of sub-networks.}
+\item{subnetworks}{A list with the sub-networks of the original NMA data.}
 }
 \description{
 Stochastic Search Inconsistency Factor Selection evaluates the consistency assumption of Network Meta-Analysis in the Bayesian framework,
@@ -141,13 +141,13 @@ For the calculation of the Bayes factor, the inconsistent NMA models are treated
 posterior model probabilities are summed.
 }
 \note{
-The function uses the random effects inverse-variance NMA model, and assumes common heterogeneity between different treatment comparisons
-and no correlation between different studies. Also note that the function keeps only those studies that belong to
-the largest sub-network, if the network is disconnected, in order to maintain one connected network.
+The function uses the random-effects inverse-variance NMA model, and assumes common heterogeneity between different treatment comparisons
+and no correlation between different studies. Additionally, when the network is disconnected, the function keeps only those studies that
+belong to the largest sub-network.
 
 In a multi-arm study with T comparisons, T-1 are required for the NMA model since the rest are obtained as a linear combination.
 The function automatically excludes the unnecessary comparisons, while maintaining the basic comparisons (if possible)
-and comparisons in which an inconsistency factor has been added (if possible). Therefore, all possible comparisons
+and comparisons in which an inconsistency factor has been added. Therefore, all possible comparisons
 of multi-arm studies must be provided by the user.
 
 For the names of the inconsistency factor, treatments are separated by the symbol \code{" ; "}. For example, if an inconsistency
@@ -156,8 +156,8 @@ In the case where \code{method = "DBT"} or \code{method = "Jackson"}, inconsiste
 denoted as \emph{treatment.comparison}_\emph{design}. Thus, if an inconsistency factor is added in the comparison
 between treatments A and B of the ABC design, the inconsistency factor name will be \code{A ; B_ABC}.
 
-In extremely large networks potentially there are exponentially many paths between two nodes, and you may run out of
-memory when using the Lu and Ades model for the specification of the inconsistency factors, if your network is lattice-like.
+In extremely large networks, the number of paths between two nodes may be exponentially high. If your network is lattice-like,
+you may run out of memory during the specification of the inconsistency factors with the Lu and Ades model.
 }
 \examples{
 \donttest{

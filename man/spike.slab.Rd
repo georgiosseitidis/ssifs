@@ -7,7 +7,7 @@
 spike.slab(x)
 }
 \arguments{
-\item{x}{An object class of \code{ssifs}.}
+\item{x}{An object of class \code{ssifs}.}
 }
 \value{
 An object of class \code{ggplot}.
@@ -19,9 +19,9 @@ factor is included in the Network Meta-Analysis (NMA) model and when is not.
 \details{
 The function creates two density plots for each inconsistency factor based on the inconsistency
 factors' effects, which are obtained from the \code{ssifs} model. The former visualizes the effect when the
-inconsistency factor is included in the NMA model (spike) while the latter when
+inconsistency factor is included in the NMA model (spike), while the latter when
 is not (slab). A good mixing of the SSIFS model indicates that the spike has high density for values
-close to zero whereas the slab is more flat.
+close to zero whereas the slab is flatter.
 }
 \examples{
 \donttest{
