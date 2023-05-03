@@ -37,7 +37,6 @@
 #'
 #'
 #' @examples
-#' \dontrun{
 #' data(smokingcessation)
 #'
 #' # Transform data from arm-based format to contrast-based format
@@ -61,6 +60,7 @@
 #' # Stochastic Search Inconsistency Factor Selection using as reference treatment A and the
 #' # design-by-treatment method for the specification of the Z matrix.
 #'
-#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A")
-#' }
+#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A",
+#' M = 1000, B = 100, M_pilot = 1000, B_pilot = 100)
+#'
 NULL

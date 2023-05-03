@@ -160,7 +160,6 @@ In extremely large networks, the number of paths between two nodes may be expone
 you may run out of memory during the specification of the inconsistency factors with the Lu and Ades model.
 }
 \examples{
-\donttest{
 data(Alcohol)
 
 TE <- Alcohol$TE
@@ -170,8 +169,8 @@ treat1 <- Alcohol$treat2
 treat2 <- Alcohol$treat1
 
 # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
-m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
-}
+m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", M=1000, B=100)
+
 
 }
 \references{

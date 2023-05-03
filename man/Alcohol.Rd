@@ -33,7 +33,6 @@ assumption for the network meta-analysis model.
 These data are used as an example in Seitidis et al. (2021).
 }
 \examples{
-\dontrun{
 data(Alcohol)
 
 TE <- Alcohol$TE
@@ -45,6 +44,7 @@ treat2 <- Alcohol$treat1
 # Stochastic Search Inconsistency Factor Selection using as reference treatment AO-CT and the
 # Lu & Ades method for the specification of the Z matrix.
 
-m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes")
-}
+m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes",
+M = 1000, B = 100, M_pilot = 1000, B_pilot = 100)
+
 }

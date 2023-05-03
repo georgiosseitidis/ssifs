@@ -151,7 +151,6 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' data(Alcohol)
 #'
 #' TE <- Alcohol$TE
@@ -161,8 +160,8 @@
 #' treat2 <- Alcohol$treat1
 #'
 #' # Stochastic Search Inconsistency Factor Selection using intervention AO-CT as reference.
-#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT")
-#' }
+#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", M=1000, B=100)
+#'
 #'
 ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons = TRUE, pcons = 0.5, zellner = TRUE, c = 3, psi = NULL, digits = 4,
                   M = 50000, B = 10000, n_thin = 1, n_chains = 2, M_pilot = 10000, B_pilot = 2000, n_thin_pilot = 1, n_chains_pilot = 1) {

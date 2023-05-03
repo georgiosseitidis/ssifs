@@ -35,7 +35,6 @@ assumption for the network meta-analysis model.
 These data are used as an example in Dias et al. (2013).
 }
 \examples{
-\dontrun{
 data(smokingcessation)
 
 # Transform data from arm-based format to contrast-based format
@@ -59,6 +58,7 @@ treat2 <- smoking.pair$treat2
 # Stochastic Search Inconsistency Factor Selection using as reference treatment A and the
 # design-by-treatment method for the specification of the Z matrix.
 
-m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A")
-}
+m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "A",
+M = 1000, B = 100, M_pilot = 1000, B_pilot = 100)
+
 }
