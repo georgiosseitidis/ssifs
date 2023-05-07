@@ -5,8 +5,8 @@ subnet <- function(data) {
   oldopt <- options()
   on.exit(options(oldopt))
 
-  options(listexpressions = 500000, warn = -1)
-  SCC <- RevEcoR::KosarajuSCC(t)
+  options(listexpressions = 500000)
+  SCC <- suppressWarnings(RevEcoR::KosarajuSCC(t))
 
   ##
   subnetworks <- lapply(SCC, names)
