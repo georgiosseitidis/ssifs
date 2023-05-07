@@ -7,12 +7,12 @@
 
 <!-- badges: start -->
 
-\[![CRAN
-status](https://www.r-pkg.org/badges/version/ssifs)(<https://CRAN.R-project.org/package=ssifs>)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ssifs)](https://CRAN.R-project.org/package=ssifs)
 [![Monthly
 Downloads](https://cranlogs.r-pkg.org/badges/ssifs)](https://cran.r-project.org/package=ssifs)
-\[![Total
-Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ssifs)(<http://cranlogs.r-pkg.org/badges/grand-total/ssifs>)
+[![Total
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ssifs)](http://cranlogs.r-pkg.org/badges/grand-total/ssifs)
 <!-- badges: end -->
 
 The goal of *ssifs* is to test the consistency assumption of network
