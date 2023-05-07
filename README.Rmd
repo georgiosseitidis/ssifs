@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 # <img src="man/figures/ssifs_logo.png" align="right" width="25%"/>
 
 <!-- badges: start -->
-
+[![CRAN status](https://www.r-pkg.org/badges/version/ssifs)(https://CRAN.R-project.org/package=ssifs)
+[![Monthly Downloads](https://cranlogs.r-pkg.org/badges/ssifs)](https://cran.r-project.org/package=ssifs)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ssifs)(http://cranlogs.r-pkg.org/badges/grand-total/ssifs)
 <!-- badges: end -->
 
 The goal of *ssifs* is to test the consistency assumption of network meta-analysis (NMA) in the Bayesian framework both globally and locally.
@@ -44,15 +46,17 @@ vignette("An_introduction_to_ssifs", package = "ssifs")
 
 How to cite **ssifs**:
 
-### APA
+### Publication use
 
-Seitidis, G., Nikolakopoulos, S., Ntzoufras, I., & Mavridis, D. (2022). ssifs: Stochastic Search Inconsistency Factor Selection (Version 0.1.0). https://github.com/georgiosseitidis/ssifs
+Seitidis G, Nikolakopoulos S, Ntzoufras I, Mavridis D. (2023).
+_ssifs: Stochastic Search Inconsistency Factor Selection_. R package version 1.0-0, <https://CRAN.R-project.org/package=ssifs>.
 
 ### BibTeX
 
-@manual{Seitidis_ssifs_Stochastic_Search_2022,
+@manual{,
+title = {ssifs: Stochastic Search Inconsistency Factor Selection},
 author = {Seitidis, Georgios and Nikolakopoulos, Stavros and Ntzoufras, Ioannis and Mavridis, Dimitris},
-title = {{ssifs: Stochastic Search Inconsistency Factor Selection}},
-url = {https://github.com/georgiosseitidis/ssifs},
-year = {2022}
+year = {2023},
+note ={R package version 1.0-0},
+url = {https://CRAN.R-project.org/package=ssifs},
 }
