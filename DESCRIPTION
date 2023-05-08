@@ -1,7 +1,7 @@
 Package: ssifs
 Type: Package
 Title: Stochastic Search Inconsistency Factor Selection
-Version: 1.0.0
+Version: 1.0.1
 Author: Georgios Seitidis [aut, cre] (<https://orcid.org/0000-0003-0856-1892>),
         Stavros Nikolakopoulos [aut] (<https://orcid.org/0000-0002-9769-3725>),
         Ioannis Ntzoufras [aut] (<https://orcid.org/0000-0002-7615-0334>),
