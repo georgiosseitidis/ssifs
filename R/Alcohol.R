@@ -43,9 +43,9 @@
 #' treat2 <- Alcohol$treat1
 #'
 #' # Stochastic Search Inconsistency Factor Selection using as reference treatment AO-CT and the
-#' # Lu & Ades method for the specification of the Z matrix.
+#' # design-by-treatment method for the specification of the Z matrix.
 #'
-#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT", method = "LuAdes",
+#' m <- ssifs(TE, seTE, treat1, treat2, studlab, ref = "AO-CT",
 #' M = 1000, B = 100, M_pilot = 1000, B_pilot = 100)
 #'
 NULL

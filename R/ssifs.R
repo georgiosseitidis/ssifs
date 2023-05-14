@@ -372,7 +372,7 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
   }
 
   ##
-  par_save <- c("precision", "beta", "gamma", "sigma", "p.cons", "sd", "d") # parameteres saved in the MCMC
+  par_save <- c("precision", "beta", "gamma", "sigma", "p.cons", "sd", "d") # parameters saved in the MCMC
 
   if (NMA_data$p == 1) {
     one_IF <- TRUE
@@ -405,11 +405,16 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
       Data_MCMC_pilot <- Data_MCMC_pilot[-which(names(Data_MCMC_pilot) == "p")]
     }
 
+    pilot_jags <- textConnection(NMApilot(multi, one_IF, zellner))
+
     model <- R2jags::jags(
-      model.file = textConnection(NMApilot(multi, one_IF, zellner)),
-      n.iter = M_pilot, n.burnin = B_pilot, n.thin = n_thin_pilot, n.chains = n_chains_pilot,
-      parameters.to.save = c("beta"), data = Data_MCMC_pilot
+      model.file = pilot_jags, n.iter = M_pilot, n.burnin = B_pilot, n.thin = n_thin_pilot,
+      n.chains = n_chains_pilot, parameters.to.save = c("beta"),
+      data = Data_MCMC_pilot, quiet = TRUE
     )
+
+    close(pilot_jags)
+
     ##
     Data_MCMC[["psi"]] <- model$BUGSoutput$summary[-which(rownames(model$BUGSoutput$summary) == "deviance"), 2]
   } else {
@@ -422,13 +427,15 @@ ssifs <- function(TE, seTE, treat1, treat2, studlab, ref, method = "DBT", rpcons
   # NMA MCMC run
   ##
 
-  m_NMA <- NMAmodel(multi, one_IF, rpcons, pcons, zellner)
+  NMA_jags <- textConnection(NMAmodel(multi, one_IF, rpcons, pcons, zellner))
 
   ##
   model <- R2jags::jags(
-    model.file = textConnection(m_NMA), n.iter = M, n.burnin = B, n.thin = n_thin, n.chains = n_chains,
-    parameters.to.save = par_save, DIC = FALSE, data = Data_MCMC
+    model.file = NMA_jags, n.iter = M, n.burnin = B, n.thin = n_thin, n.chains = n_chains,
+    parameters.to.save = par_save, DIC = FALSE, data = Data_MCMC, quiet = TRUE
   )
+
+  close(NMA_jags)
 
   ##
   # Export results
