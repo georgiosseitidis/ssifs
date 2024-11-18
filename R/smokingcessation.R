@@ -35,6 +35,7 @@
 #' \emph{Medical Decision Making},
 #' \bold{33}, 641--56
 #'
+#' @importFrom meta pairwise
 #'
 #' @examples
 #' data(smokingcessation)
@@ -42,7 +43,7 @@
 #' # Transform data from arm-based format to contrast-based format
 #'
 #' smokingcessation$id <- 1:dim(smokingcessation)[1]
-#' smoking.pair <- netmeta::pairwise(
+#' smoking.pair <- meta::pairwise(
 #'   treat = list(treat1, treat2, treat3),
 #'   event = list(event1, event2, event3),
 #'   n = list(n1, n2, n3),
