@@ -1,3 +1,5 @@
+#' @importFrom netmeta netmeta
+
 higgdes <- function(Z, Multiarm_studies, studies_multi, p_Jackson, p_Higgins) {
   IF_parameters <- data.frame(design = NA, IF = colnames(Z)[4:dim(Z)[2]], add = NA, stringsAsFactors = FALSE)
   row_mult_desg <- NULL
@@ -98,7 +100,7 @@ higgdes <- function(Z, Multiarm_studies, studies_multi, p_Jackson, p_Higgins) {
               if (Discon_NMA$nsub == 1) {
                 # Connected network
 
-                m <- netmeta::netmeta(TE = data_nma$TE, seTE = data_nma$seTE, treat1 = data_nma$treat1, treat2 = data_nma$treat2, studlab = data_nma$studlab, sm = "MD")
+                m <- netmeta(TE = data_nma$TE, seTE = data_nma$seTE, treat1 = data_nma$treat1, treat2 = data_nma$treat2, studlab = data_nma$studlab, sm = "MD")
                 ind_tab <- m$TE.indirect.random
 
                 if (!is.na(ind_tab[which(row.names(ind_tab) == z_1), which(colnames(ind_tab) == z_2)])) {
@@ -113,7 +115,7 @@ higgdes <- function(Z, Multiarm_studies, studies_multi, p_Jackson, p_Higgins) {
                 for (r in 1:length(Discon_NMA$subnetworks)) {
                   if (sum(c(z_1, z_2) %in% Discon_NMA$subnetworks[[r]]) == 2) {
                     data_nma <- data_nma[which(data_nma$treat1 %in% Discon_NMA$subnetworks[[r]] | data_nma$treat2 %in% Discon_NMA$subnetworks[[r]]), ]
-                    m <- netmeta::netmeta(
+                    m <- netmeta(
                       TE = data_nma$TE, seTE = data_nma$seTE, treat1 = data_nma$treat1, treat2 = data_nma$treat2,
                       studlab = data_nma$studlab, sm = "MD", tol.multiarm.se = 10000
                     )
