@@ -53,5 +53,7 @@ Ntzoufras, Ioannis and Mavridis, Dimitris}, year = {2023}, note ={R
 package version 1.0-2}, url =
 {<https://CRAN.R-project.org/package=ssifs>}, }
 
+## Funding
+
 This work was supported by the framework of H.F.R.I call “Basic Research Financing (Horizontal support of all Sciences)” under the National Recovery and Resilience Plan “Greece 2.0” funded by the European Union - NextGenerationEU (H.F.R.I. Project Number: 015467)
 
